@@ -1,3 +1,3 @@
 ## Lista Front API
 
-[Heroku link](https://frontlistapi.herokuapp.com/)
+[Heroku Buildpack](https://github.com/heroku/heroku-buildpack-static.git)
