@@ -1,8 +1,7 @@
 //
 // Script do Login
 //
-link = "https://backlistapi3.herokuapp.com"; //"http://localhost:3000"
-
+link = "http://localhost:8080"; //"http://localhost:3000"
 
 // if (!localStorage.getItem("user")) {
 //   user = new Object(); // Cria objetos{} se não existir
@@ -22,17 +21,17 @@ function login() {
   axios
     .post(link + "/login", {
       user: user_name.value,
-      password: password.value
+      password: password.value,
     })
     .then((response) => {
-        //console.log(response.data.id);
-        localStorage.setItem("user", JSON.stringify(response.data.id));
-        // setTimeout(() => {
-        //   location.href = './pages/lista_de_recados.html';
-        // }, 5000);
-        location.href = './pages/lista_de_recados.html';
+      //console.log(response.data);
+      localStorage.setItem("user", JSON.stringify(response.data.uid));
+      // setTimeout(() => {
+      //   location.href = './pages/lista_de_recados.html';
+      // }, 5000);
+      location.href = "./pages/lista_de_recados.html";
     })
     .catch((error) => {
-      console.log(error.response.data.msg);
-    });  
+      console.log(error.response.data);
+    });
 }

@@ -3,7 +3,7 @@
 //
 
 var data;
-const link = "https://backlistapi3.herokuapp.com";
+const link = "http://localhost:8080";
 
 var userLocalStorage = localStorage.getItem("user");
 var user = JSON.parse(userLocalStorage); // Retorna se ja existe
@@ -16,8 +16,6 @@ window.addEventListener("load", () => {
     console.log(data);
   });
 });
-
-
 
 var list = document.getElementById("list");
 
@@ -59,7 +57,7 @@ function newRecado() {
     .post(link + "/message", {
       title: descricao.value,
       detail: detalhamento.value,
-      id_user: user
+      id_user: user,
     })
     .then((response) => {
       //console.log(response.data.msg);
@@ -75,7 +73,7 @@ function newRecado() {
 
   descricao.value = "";
   detalhamento.value = "";
-  
+
   //listLoad();
 }
 
@@ -101,9 +99,9 @@ function saveBtnEdit() {
   saveEditBtn.style.display = "none";
   saveBtn.style.display = "block";
   axios
-    .put(link + "/message/"+ user + "/"+ editId, {
+    .put(link + "/message/" + editId, {
       title: descricao.value,
-      detail: detalhamento.value
+      detail: detalhamento.value,
     })
     .then((response) => {
       console.log(response.data.msg);
@@ -115,12 +113,10 @@ function saveBtnEdit() {
       console.log(error.response.data.msg);
     });
 
-
   descricao.value = "";
   detalhamento.value = "";
   alert.style.display = "block";
-  
-  
+
   //listLoad();
 }
 
@@ -148,7 +144,7 @@ function del(obj) {
 function confirmDelete() {
   //console.log(deleteId)
   axios
-    .delete(link + "/message/" + user + "/"+ deleteId)
+    .delete(link + "/message/" + deleteId)
     .then((response) => {
       //console.log(response.data.msg);
       setTimeout(() => {
@@ -160,7 +156,6 @@ function confirmDelete() {
     });
 
   //listLoad();
-
 }
 
 //#TODO deletar TUDO
